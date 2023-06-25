@@ -82,20 +82,20 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         viewModel.menuListLiveData.observe(viewLifecycleOwner){
             menuAdapter.setItems(it.menus)
         }
-        val mainMenuRV = view.findViewById<RecyclerView>(R.id.main_menu_rv)
+        /*val mainMenuRV = view.findViewById<RecyclerView>(R.id.main_menu_rv)
         mainMenuRV.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.HORIZONTAL,false
             )
         }
         val mainMenuAdapter = MainMenuAdapter(layoutInflater)
-        mainMenuRV.adapter = mainMenuAdapter
+        mainMenuRV.adapter = mainMenuAdapter*/
 
-        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Все меню"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Все меню"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Салаты"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("С рисом"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("С рыбой"))
-        adapter = fragmentManager?.let { FragmentPageAdapter(it,lifecycle) }!!*/
+        adapter = fragmentManager?.let { FragmentPageAdapter(it,lifecycle) }!!
         //binding.viewpagerMain.adapter = adapter
         /*binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
