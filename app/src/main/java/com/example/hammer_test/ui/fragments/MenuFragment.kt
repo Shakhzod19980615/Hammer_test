@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.hammer_test.R
 import com.example.hammer_test.databinding.FragmentMenuBinding
 import com.example.hammer_test.di.AppComponent
@@ -18,6 +19,7 @@ import com.example.hammer_test.ui.adapters.CategoryListAdapter
 import com.example.hammer_test.ui.adapters.MainMenuAdapter
 import com.example.hammer_test.ui.adapters.MenuListAdapter
 import com.example.restaurant_test.ui.viewmodels.CategoryViewModel
+import com.google.android.material.tabs.TabLayout
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -70,7 +72,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         viewModel.categoryListLiveData.observe(viewLifecycleOwner){
             categoryAdapter.setItems(it.categories)
         }
-        val menuRv = view.findViewById<RecyclerView>(R.id.menu_rv)
+        /*val menuRv = view.findViewById<RecyclerView>(R.id.menu_rv)
         menuRv.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(),LinearLayoutManager.VERTICAL,false
@@ -81,7 +83,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         viewModel.getMenuList()
         viewModel.menuListLiveData.observe(viewLifecycleOwner){
             menuAdapter.setItems(it.menus)
-        }
+        }*/
         /*val mainMenuRV = view.findViewById<RecyclerView>(R.id.main_menu_rv)
         mainMenuRV.apply {
             layoutManager = LinearLayoutManager(
@@ -96,8 +98,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("С рисом"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("С рыбой"))
         adapter = fragmentManager?.let { FragmentPageAdapter(it,lifecycle) }!!
-        //binding.viewpagerMain.adapter = adapter
-        /*binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        binding.viewpagerMain.adapter = adapter
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
                     binding.viewpagerMain.currentItem = tab.position
@@ -112,13 +114,13 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
             }
 
-        })*/
-       /* binding.viewpagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        })
+        binding.viewpagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
-        })*/
+        })
 
     }
 

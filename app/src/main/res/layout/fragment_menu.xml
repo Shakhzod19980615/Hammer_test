@@ -83,30 +83,27 @@
                     app:tabIndicatorHeight="5dp"
                     app:layout_collapseMode="pin"
                     android:layout_marginTop="135dp"
+                    app:tabGravity="center"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabSelectedTextColor="#fa004b"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabIndicator="@drawable/tab_indicator"
                     android:layout_height="?attr/actionBarSize"
                     tools:ignore="MissingConstraints">
-<!--                    <androidx.recyclerview.widget.RecyclerView-->
-<!--                        android:id="@+id/main_menu_rv"-->
-<!--                        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:fadeScrollbars="true"-->
-<!--                        app:layout_collapseMode="pin"-->
-<!--                        android:orientation="horizontal" />-->
                 </com.google.android.material.tabs.TabLayout>
 
 
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
-       <!-- <androidx.viewpager2.widget.ViewPager2
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+            android:layout_marginBottom="60dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
@@ -133,7 +130,7 @@
                 tools:ignore="MissingConstraints">
 
             </androidx.recyclerview.widget.RecyclerView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

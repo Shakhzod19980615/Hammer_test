@@ -1,6 +1,7 @@
 package com.example.hammer_test.di
 
 import android.app.Application
+import com.example.hammer_test.ui.fragments.AllMenuFragment
 import com.example.hammer_test.ui.fragments.CartFragment
 import com.example.hammer_test.ui.fragments.MenuFragment
 import com.example.hammer_test.ui.fragments.ProfileFragment
@@ -16,6 +17,7 @@ interface AppComponent {
     fun inject(fragment: MenuFragment)
     fun inject(fragment: CartFragment)
     fun inject(fragment: ProfileFragment)
+    fun inject(fragment: AllMenuFragment)
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance application: Application): AppComponent

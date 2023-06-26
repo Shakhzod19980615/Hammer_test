@@ -16,13 +16,13 @@ class FragmentPageAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return if (position ==0){
-            MenuFragment()
+            AllMenuFragment()
         }else if(position == 1){
-            MenuFragment()
+            CartFragment()
         }else if(position ==2){
-            MenuFragment()
+            ProfileFragment()
         }else{
-            MenuFragment()
+            ProfileFragment()
         }
     }
 
