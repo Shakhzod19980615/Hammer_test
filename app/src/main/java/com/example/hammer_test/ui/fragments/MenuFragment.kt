@@ -16,8 +16,6 @@ import com.example.hammer_test.R
 import com.example.hammer_test.databinding.FragmentMenuBinding
 import com.example.hammer_test.di.AppComponent
 import com.example.hammer_test.ui.adapters.CategoryListAdapter
-import com.example.hammer_test.ui.adapters.MainMenuAdapter
-import com.example.hammer_test.ui.adapters.MenuListAdapter
 import com.example.restaurant_test.ui.viewmodels.CategoryViewModel
 import com.google.android.material.tabs.TabLayout
 import javax.inject.Inject

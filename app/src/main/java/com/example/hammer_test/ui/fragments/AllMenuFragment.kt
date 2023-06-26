@@ -57,7 +57,10 @@ class AllMenuFragment : Fragment(R.layout.fragment_all_menu) {
                 requireContext(), LinearLayoutManager.VERTICAL,false
             )
         }
-        val menuAdapter = MenuListAdapter(layoutInflater)
+        val menuAdapter = MenuListAdapter(layoutInflater){item ->
+            fragmentManager?.let { ItemDialogFragment(item).show(it,"ItemDialogFormat",) }
+
+        }
         menuRv.adapter = menuAdapter
         viewModel.getMenuList()
         viewModel.menuListLiveData.observe(viewLifecycleOwner){

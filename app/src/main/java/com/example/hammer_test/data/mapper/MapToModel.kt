@@ -36,6 +36,7 @@ fun MenuItemResponse.mapToMenuItemModel(): MenuItemModel {
         weight = weight,
         description =description,
         dishImage=dishImage,
-        tegs = tegs
+        tegs = tegs,
+        itemCount = 1
     )
 }

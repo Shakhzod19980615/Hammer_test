@@ -11,7 +11,7 @@ import com.example.restaurant_test.domain.model.menuModel.MenuListModel
 
 class MenuListAdapter(
     private val layoutInflater: LayoutInflater,
-    //val onItemClick: (item : MenuItemModel) -> Unit
+    val onItemClick: (item : MenuItemModel) -> Unit
 ): RecyclerView.Adapter<MenuListAdapter.ViewHolder>() {
     private  val menuListItem : MutableList<MenuItemModel> = mutableListOf()
     override fun onCreateViewHolder(
@@ -45,7 +45,7 @@ class MenuListAdapter(
         init {
             itemView.setOnClickListener {
                 val item = menuListItem[bindingAdapterPosition]
-               // onItemClick(item)
+                onItemClick(item)
             }
 
         }

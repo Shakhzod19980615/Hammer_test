@@ -1,4 +1,4 @@
-package com.example.restaurant_test.domain.interactor.category
+package com.example.hammer_test.domain.interactor.interactor.category
 
 import com.example.restaurant_test.domain.model.categoryModel.CategoryListModel
 import com.example.restaurant_test.domain.model.menuModel.MenuListModel

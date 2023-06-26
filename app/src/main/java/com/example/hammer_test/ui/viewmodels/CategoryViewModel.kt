@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.restaurant_test.domain.interactor.category.CategoryInteractor
+import com.example.hammer_test.domain.interactor.interactor.category.CategoryInteractor
 import com.example.restaurant_test.domain.model.categoryModel.CategoryListModel
 import com.example.restaurant_test.domain.model.menuModel.MenuListModel
 import kotlinx.coroutines.Dispatchers

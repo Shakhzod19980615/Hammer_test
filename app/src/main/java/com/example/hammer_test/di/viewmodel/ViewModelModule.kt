@@ -2,6 +2,7 @@ package com.example.restaurant_test.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.hammer_test.ui.viewmodels.CartViewModel
 import com.example.restaurant_test.di.annotation.ViewModelKey
 import com.example.restaurant_test.ui.viewmodels.CategoryViewModel
 import dagger.Binds
@@ -18,8 +19,8 @@ interface ViewModelModule {
     @ViewModelKey(CategoryViewModel::class)
     fun categoryViewModel(viewModel: CategoryViewModel) : ViewModel
 
-   /* @Binds
+    @Binds
     @IntoMap
     @ViewModelKey(CartViewModel::class)
-    fun cartViewModel(viewModel : CartViewModel):ViewModel*/
+    fun cartViewModel(viewModel : CartViewModel):ViewModel
 }

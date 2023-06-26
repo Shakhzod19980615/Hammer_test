@@ -5,6 +5,7 @@ class MenuItemModel(
     val dishName:String,
     val price:Int,
     val weight:Int,
+    var itemCount:Int,
     val description:String,
     val dishImage:String,
     val tegs:List<String>
