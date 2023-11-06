@@ -1,31 +1,20 @@
 package com.example.hammer_test.domain.interactor.interactor.category
 
+import com.example.hammer_test.domain.model.mainCategoryModel.MainCategoryModel
 import com.example.hammer_test.domain.repository.CategoryRepository
 import com.example.restaurant_test.domain.model.categoryModel.CategoryListModel
 import com.example.restaurant_test.domain.model.menuModel.MenuListModel
+import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 
 import javax.inject.Inject
 
 class CategoryInteractorImpl @Inject constructor(
         private val categoryRepository: CategoryRepository
 ): CategoryInteractor {
-    override suspend fun getCategoryList(): CategoryListModel {
-        return categoryRepository.getCategoryList()
+    override suspend fun getMainCategory(): List<MainCategoryModel> {
+        return categoryRepository.getMainCategory()
     }
-
-    override suspend fun getMenuList(): MenuListModel {
-        val allTegs = categoryRepository.getMenuList().menus.flatMap { it.tegs }.toSet()
-       val allProducts = categoryRepository.getMenuList().menus
-        val products = allTegs.map { teg->
-            allProducts.filter { it.tegs.contains(teg) }
-        }
-        return categoryRepository.getMenuList()
+    override suspend fun getSubCategoryList(): List<SubCategoryListModel> {
+        return  categoryRepository.getSubCategoryList()
     }
-
-    /*override suspend fun getSaladList(): MenuListModel {
-        val list = categoryRepository.getMenuList().menus
-        val saladList = categoryRepository.getMenuList().menus.map { it.tegs }.toSet()
-        val salads = saladList.groupBy { it }
-        return salads
-    }*/
 }

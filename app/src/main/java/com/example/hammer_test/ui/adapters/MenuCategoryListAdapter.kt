@@ -6,27 +6,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.hammer_test.databinding.CategoryItemBinding
+import com.example.hammer_test.databinding.MenuCategoryItemBinding
 import com.example.hammer_test.domain.model.mainCategoryModel.MainCategoryModel
+import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 
 
-class CategoryListAdapter(
+class MenuCategoryListAdapter(
     private val layoutInflater: LayoutInflater,
-    //val onItemClick: (name : String) -> Unit,
+    val onItemClick: (name : String) -> Unit,
     //private val context: Context
-):RecyclerView.Adapter<CategoryListAdapter.ViewHolder>() {
-    private  val categoryListItem : MutableList<MainCategoryModel> = mutableListOf()
+):RecyclerView.Adapter<MenuCategoryListAdapter.ViewHolder>() {
+    private  val categoryListItem : MutableList<SubCategoryListModel> = mutableListOf()
     val displayMetrics = DisplayMetrics()
     private var screenWidth = 1000
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewHolder {
-        val binding = CategoryItemBinding.inflate(layoutInflater,parent,false)
+    ): MenuCategoryListAdapter.ViewHolder {
+        val binding = MenuCategoryItemBinding.inflate(layoutInflater,parent,false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CategoryListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MenuCategoryListAdapter.ViewHolder, position: Int) {
         /*val layoutParams: ViewGroup.LayoutParams = holder.itemView.getLayoutParams()
         layoutParams.width = (screenWidth/1.2).toInt()
         holder.itemView.layoutParams*/
@@ -38,27 +39,26 @@ class CategoryListAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(categoryListItem : List<MainCategoryModel>){
+    fun setItems(categoryListItem : List<SubCategoryListModel>){
         this.categoryListItem.clear()
         this.categoryListItem.addAll(categoryListItem)
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(
-        private val binding :CategoryItemBinding
+        private val binding: MenuCategoryItemBinding
     ):RecyclerView.ViewHolder(binding.root){
-        fun bindData(categoryListItem: MainCategoryModel){
+        fun bindData(categoryListItem: SubCategoryListModel){
+            binding.categoryName.text = categoryListItem.title
 
-            //binding.categoryName.text = categoryListItem.title
-            Glide.with(binding.root).load(categoryListItem.image).into(binding.categoryImage)
         }
-       /* init {
+
+        init {
             itemView.setOnClickListener {
                 val item =categoryListItem[bindingAdapterPosition]
-                onItemClick(item.name)
+                onItemClick(item.keyword)
             }
-            itemView.width =screenWidth
-        }*/
+        }
     }
 
 }

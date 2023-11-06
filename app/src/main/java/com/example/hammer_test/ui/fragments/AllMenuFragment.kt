@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hammer_test.R
 import com.example.hammer_test.databinding.FragmentAllMenuBinding
-import com.example.hammer_test.databinding.FragmentMenuBinding
 import com.example.hammer_test.di.AppComponent
-import com.example.hammer_test.ui.adapters.MenuListAdapter
+import com.example.hammer_test.ui.adapters.MenuCategoryListAdapter
 import com.example.restaurant_test.ui.viewmodels.CategoryViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -57,14 +56,14 @@ class AllMenuFragment : Fragment(R.layout.fragment_all_menu) {
                 requireContext(), LinearLayoutManager.VERTICAL,false
             )
         }
-        val menuAdapter = MenuListAdapter(layoutInflater){item ->
+       /* val menuAdapter = MenuCategoryListAdapter(layoutInflater){ item ->
             fragmentManager?.let { ItemDialogFragment(item).show(it,"ItemDialogFormat",) }
 
         }
-        menuRv.adapter = menuAdapter
-        viewModel.getMenuList()
+        menuRv.adapter = menuAdapter*/
+       /* viewModel.getMenuList()
         viewModel.menuListLiveData.observe(viewLifecycleOwner){
             menuAdapter.setItems(it.menus)
-        }
+        }*/
     }
 }

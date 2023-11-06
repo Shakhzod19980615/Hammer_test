@@ -11,13 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.hammer_test.R
 import com.example.hammer_test.databinding.FragmentMenuBinding
 import com.example.hammer_test.di.AppComponent
 import com.example.hammer_test.ui.adapters.CategoryListAdapter
+import com.example.hammer_test.ui.adapters.MenuCategoryListAdapter
+import com.example.hammer_test.ui.adapters.SubCategoryItemAdapter
 import com.example.restaurant_test.ui.viewmodels.CategoryViewModel
-import com.google.android.material.tabs.TabLayout
+import uz.demo.dana.domain.model.subcategory.SubCategoryItemModel
+import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -28,6 +30,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     private var binding: FragmentMenuBinding by Delegates.notNull()
     private  var viewModel : CategoryViewModel by Delegates.notNull()
     private lateinit var adapter: FragmentPageAdapter
+    private val subMenuItemList : MutableList<SubCategoryListModel> = mutableListOf()
+    private var itemKeyword = ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AppComponent.get().inject(this)
@@ -57,7 +61,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, cities)
         binding.spinner.setAdapter(arrayAdapter)
         viewModel =ViewModelProvider(this,viewModelFactory).get(CategoryViewModel::class.java)
-        val categoryRV = view.findViewById<RecyclerView>(R.id.category_rv)
+        val categoryRV = view.findViewById<RecyclerView>(R.id.main_category_rv)
         categoryRV.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.HORIZONTAL,false
@@ -66,10 +70,39 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
         val categoryAdapter = CategoryListAdapter(layoutInflater )
         categoryRV.adapter =categoryAdapter
-        viewModel.getCategoryList()
-        viewModel.categoryListLiveData.observe(viewLifecycleOwner){
-            categoryAdapter.setItems(it.categories)
+        viewModel.getMainCategory()
+        viewModel.mainCategoryLiveData.observe(viewLifecycleOwner){
+            categoryAdapter.setItems(it)
         }
+        val menuCategoryRV = view.findViewById<RecyclerView>(R.id.menu_rv)
+        menuCategoryRV.apply {
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL,false
+            )
+        }
+        val menuCategoryListAdapter = MenuCategoryListAdapter(layoutInflater){
+            keyword -> itemKeyword = keyword
+
+        }
+        menuCategoryRV.adapter =menuCategoryListAdapter
+        viewModel.getSubCategoryList()
+        viewModel.subCategoryListLiveData.observe(viewLifecycleOwner){
+            menuCategoryListAdapter.setItems(it)
+        }
+        val subCategoryRV =  view.findViewById<RecyclerView>(R.id.menu_item_rv)
+        subCategoryRV.apply {
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.VERTICAL,false
+            )
+        }
+        val subCategoryListAdapter = SubCategoryItemAdapter(layoutInflater)
+        subCategoryRV.adapter = subCategoryListAdapter
+       //
+        viewModel.getSubCategoryList()
+        viewModel.subCategoryItemLiveData.observe(viewLifecycleOwner){
+            subCategoryListAdapter.setItems(subMenuItemList.firstOrNull { it.keyword == itemKeyword }!!.items)
+        }
+
         /*val menuRv = view.findViewById<RecyclerView>(R.id.menu_rv)
         menuRv.apply {
             layoutManager = LinearLayoutManager(
@@ -90,7 +123,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
         val mainMenuAdapter = MainMenuAdapter(layoutInflater)
         mainMenuRV.adapter = mainMenuAdapter*/
-
+/*
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Все меню"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Салаты"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("С рисом"))
@@ -118,7 +151,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 super.onPageSelected(position)
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
-        })
+        })*/
 
     }
 

@@ -36,7 +36,7 @@ interface NetworkModule {
 
             }
             return Retrofit.Builder()
-                .baseUrl("https://run.mocky.io/v3/")
+                .baseUrl("https://api.dana.uz")
                 .client(provideOkhttp())
                 .addConverterFactory(json.asConverterFactory(MediaType.parse("application/json")!!))
                 .build()

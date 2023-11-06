@@ -38,7 +38,7 @@
                 android:textStyle="bold">
 
             </TextView>
-            <TextView
+           <!-- <TextView
                 android:id="@+id/item_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                 android:maxLines="4"
                 android:textSize="14dp">
 
-            </TextView>
+            </TextView>-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
