@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#F3F5F9"
+    android:background="@color/menu_list_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -53,14 +53,13 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F3F5F9"
+            android:background="@color/menu_list_bg"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#F3F5F9"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -77,29 +76,13 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin">
                 </androidx.appcompat.widget.Toolbar>
-               <!-- <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:tabIndicatorHeight="5dp"
-                    app:layout_collapseMode="pin"
-                    android:layout_marginTop="135dp"
-                    app:tabGravity="center"
-                    app:tabTextColor="#C3C4C9"
-                    app:tabIndicatorColor="#f2d8d0"
-                    app:tabIndicatorGravity="stretch"
-                    app:tabSelectedTextColor="#FD3A69"
-                    app:tabIndicatorAnimationMode="elastic"
-                    android:layout_height="?attr/actionBarSize"
-                    tools:ignore="MissingConstraints">
-                </com.google.android.material.tabs.TabLayout>-->
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/menu_rv"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    android:background="#F3F5F9"
+                    android:background="@color/menu_list_bg"
                     android:layout_marginTop="135dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
@@ -108,54 +91,21 @@
 
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!--<androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
-
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:orientation="vertical">
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/menu_rv"
+                android:id="@+id/menu_item_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:layout_marginBottom="15dp"
+                android:background="@color/menu_list_bg"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:fadeScrollbars="true"
-                android:orientation="vertical"
-                android:overScrollMode="never"
-                android:scrollbars="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints">
-
-            </androidx.recyclerview.widget.RecyclerView>
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/menu_item_rv"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        android:background="#F3F5F9"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fadeScrollbars="true"
-        android:orientation="horizontal"/>
+
+
 </LinearLayout>

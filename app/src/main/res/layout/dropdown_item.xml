@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:textColor="#222831"
+    android:textColor="@color/location_tv_color"
     android:padding="5dp"
     android:textSize="16dp"
     android:text="TextView">

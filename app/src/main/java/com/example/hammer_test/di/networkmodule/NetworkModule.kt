@@ -1,14 +1,10 @@
 package com.example.restaurant_test.di.networkmodule
 
 import com.example.hammer_test.data.ApiService
-import com.example.hammer_test.data.repositoryImpl.CartRepositoryImpl
 import com.example.hammer_test.domain.repository.CategoryRepository
 import com.example.restaurant_test.data.repositoryImpl.CategroyRepositoryImpl
 import com.example.hammer_test.domain.interactor.interactor.category.CategoryInteractor
 import com.example.hammer_test.domain.interactor.interactor.category.CategoryInteractorImpl
-import com.example.hammer_test.domain.repository.CartRepository
-import com.example.restaurant_test.domain.interactor.cart.CartInteractor
-import com.example.restaurant_test.domain.interactor.cart.CartInteractorImpl
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Binds
 import dagger.Module
@@ -64,17 +60,9 @@ interface NetworkModule {
             return categoryRepositoryImpl
         }
 
-        @Singleton
-        @Provides
-        fun provideCartRepository(
-            cartRepositoryImpl: CartRepositoryImpl
-        ): CartRepository {
-            return  cartRepositoryImpl
-        }
     }
 
     @Binds
     fun provideCategoryInteractor(impl: CategoryInteractorImpl): CategoryInteractor
-    @Binds
-    fun provideCartInteractor(impl: CartInteractorImpl): CartInteractor
+
 }

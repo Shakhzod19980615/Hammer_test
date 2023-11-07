@@ -1,24 +1,23 @@
 package com.example.hammer_test.ui.adapters
 
 import android.annotation.SuppressLint
-import android.util.DisplayMetrics
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.hammer_test.R
 import com.example.hammer_test.databinding.MenuCategoryItemBinding
-import com.example.hammer_test.domain.model.mainCategoryModel.MainCategoryModel
 import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 
 
 class MenuCategoryListAdapter(
     private val layoutInflater: LayoutInflater,
     val onItemClick: (name : String) -> Unit,
-    //private val context: Context
 ):RecyclerView.Adapter<MenuCategoryListAdapter.ViewHolder>() {
     private  val categoryListItem : MutableList<SubCategoryListModel> = mutableListOf()
-    val displayMetrics = DisplayMetrics()
-    private var screenWidth = 1000
+    private var selectedCategoryIndex = 0
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,11 +26,18 @@ class MenuCategoryListAdapter(
         return ViewHolder(binding)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MenuCategoryListAdapter.ViewHolder, position: Int) {
-        /*val layoutParams: ViewGroup.LayoutParams = holder.itemView.getLayoutParams()
-        layoutParams.width = (screenWidth/1.2).toInt()
-        holder.itemView.layoutParams*/
+
         holder.bindData(categoryListItem=categoryListItem[position])
+
+        if (selectedCategoryIndex == position) {
+            holder.itemView.setBackgroundResource(R.drawable.tab_selected_bg)
+
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.tab_unselected_bg)
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,20 +51,30 @@ class MenuCategoryListAdapter(
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(
         private val binding: MenuCategoryItemBinding
     ):RecyclerView.ViewHolder(binding.root){
+        @SuppressLint("ResourceAsColor")
         fun bindData(categoryListItem: SubCategoryListModel){
             binding.categoryName.text = categoryListItem.title
-
+            if(selectedCategoryIndex == bindingAdapterPosition){
+                binding.categoryName.setTextColor(Color.parseColor("#FD3A69"))
+            }else{
+                binding.categoryName.setTextColor(Color.parseColor("#7B7B7B"))
+            }
         }
 
         init {
             itemView.setOnClickListener {
                 val item =categoryListItem[bindingAdapterPosition]
                 onItemClick(item.keyword)
+                selectedCategoryIndex = bindingAdapterPosition
+                notifyDataSetChanged()
             }
+
         }
+
     }
 
 }

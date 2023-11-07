@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MainCategoryItemsResponse (
+data class BannerItemsResponse (
     @SerialName("id")
     val id: Int,
     @SerialName("title")
@@ -14,5 +14,5 @@ data class MainCategoryItemsResponse (
     /*@SerialName("ads_image")
     val ads_image : String,*/
     @SerialName("children")
-    val itemsOfMainCategory : List<MainCategoryItemsResponse>
+    val itemsOfMainCategory : List<BannerItemsResponse>
     )

@@ -8,4 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FFFFFFFF</color>
+    <color name="selected_category">#FED7E1</color>
+    <color name="selected_category_text">#FD3A69</color>
+    <color name="unselected_category_text">#7B7B7B</color>
+    <color name="border_price_color">#FF0000</color>
+    <color name="bottom_nav_unselected">#7B7B7B</color>
+    <color name="bottom_nav_bg">#F0F0F0</color>
+    <color name="location_tv_color">#222831</color>
+    <color name="menu_list_bg">#F3F5F9</color>
+    <color name="menu_item_light">#C3C4C9</color>
+    <color name="menu_item_lighter">#AAAAAD</color>
+    <color name="menu_item_title">#222831</color>
+    <color name="price_color">#f53636</color>
+
+
 </resources>

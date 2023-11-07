@@ -8,21 +8,21 @@ import com.example.hammer_test.databinding.MenuItemBinding
 import uz.demo.dana.domain.model.subcategory.SubCategoryItemModel
 
 
-class SubCategoryItemAdapter(
+class ItemMenuCategoryListAdapter(
     private val layoutInflater: LayoutInflater,
-    ) :RecyclerView.Adapter<SubCategoryItemAdapter.ViewHolder>() {
+    ) :RecyclerView.Adapter<ItemMenuCategoryListAdapter.ViewHolder>() {
 
     private val subCategoryItemList : MutableList<SubCategoryItemModel> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SubCategoryItemAdapter.ViewHolder {
+    ): ItemMenuCategoryListAdapter.ViewHolder {
         val binding = MenuItemBinding.inflate(layoutInflater,parent,false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SubCategoryItemAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemMenuCategoryListAdapter.ViewHolder, position: Int) {
         holder.bindData(subCategoryItemModel = subCategoryItemList[position])
 
             /*holder.itemView.visibility = View.GONE
@@ -45,6 +45,7 @@ class SubCategoryItemAdapter(
         fun bindData(subCategoryItemModel:SubCategoryItemModel) {
             binding.itemName.text = subCategoryItemModel.name
             binding.itemPrice.text = subCategoryItemModel.price
+            binding.itemDescription.text = subCategoryItemModel.shopName
             Glide.with(binding.root).load(subCategoryItemModel.image).into(binding.itemImage)
 
         }

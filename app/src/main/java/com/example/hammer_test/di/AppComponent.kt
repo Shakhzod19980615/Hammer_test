@@ -3,20 +3,17 @@ package com.example.hammer_test.di
 import android.app.Application
 import com.example.hammer_test.ui.fragments.*
 import com.example.restaurant_test.di.networkmodule.NetworkModule
-import com.example.restaurant_test.di.room.DatabaseModule
 import com.example.restaurant_test.di.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DatabaseModule::class, NetworkModule::class,ViewModelModule::class])
+@Component(modules = [NetworkModule::class,ViewModelModule::class])
 interface AppComponent {
     fun inject(fragment: MenuFragment)
     fun inject(fragment: CartFragment)
     fun inject(fragment: ProfileFragment)
-    fun inject(fragment: AllMenuFragment)
-    fun inject(fragment:ItemDialogFragment)
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance application: Application): AppComponent

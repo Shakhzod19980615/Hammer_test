@@ -2,14 +2,12 @@ package com.example.restaurant_test.data.repositoryImpl
 
 import android.annotation.SuppressLint
 import com.example.hammer_test.data.ApiService
-import com.example.hammer_test.domain.model.mainCategoryModel.MainCategoryModel
+import com.example.hammer_test.domain.model.bannerModel.BannerModel
 import com.example.hammer_test.domain.repository.CategoryRepository
-import com.example.restaurant_test.data.mapper.mapToCategoryListModel
 import com.example.restaurant_test.data.mapper.mapToMainCategoryModel
-import com.example.restaurant_test.data.mapper.mapToMenuListModel
+
 import com.example.restaurant_test.data.mapper.mapToSubCategoryListModel
-import com.example.restaurant_test.domain.model.categoryModel.CategoryListModel
-import com.example.restaurant_test.domain.model.menuModel.MenuListModel
+
 import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 import java.util.*
 import javax.inject.Inject
@@ -19,9 +17,9 @@ class CategroyRepositoryImpl @Inject constructor(
 ): CategoryRepository {
 
     @SuppressLint("SuspiciousIndentation")
-    override suspend fun getMainCategory(): List<MainCategoryModel> {
+    override suspend fun getBannerList(): List<BannerModel> {
         return try{
-            val result = apiService.getMainCategory()
+            val result = apiService.getBannerList()
             result.map { it.mapToMainCategoryModel() }
         }catch (e : Exception){
             return Collections.emptyList()

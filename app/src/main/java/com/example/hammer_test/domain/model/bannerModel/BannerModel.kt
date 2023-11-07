@@ -1,6 +1,6 @@
-package com.example.hammer_test.domain.model.mainCategoryModel
+package com.example.hammer_test.domain.model.bannerModel
 
-class MainCategoryModel(
+class BannerModel(
     val id: Int,
     val keyword : String,
     val title: String,

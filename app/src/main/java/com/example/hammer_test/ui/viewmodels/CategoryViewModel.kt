@@ -6,45 +6,65 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hammer_test.domain.interactor.interactor.category.CategoryInteractor
-import com.example.hammer_test.domain.model.mainCategoryModel.MainCategoryModel
-import com.example.restaurant_test.domain.model.categoryModel.CategoryListModel
-import com.example.restaurant_test.domain.model.menuModel.MenuListModel
+import com.example.hammer_test.domain.model.bannerModel.BannerModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import uz.demo.dana.domain.model.subcategory.SubCategoryItemModel
 import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
     private val categoryInteractor: CategoryInteractor
-): ViewModel() {
+) : ViewModel() {
 
-    private val mainCategoryLiveData_ : MutableLiveData<List<MainCategoryModel>>
-            = MutableLiveData<List<MainCategoryModel>>()
-    val mainCategoryLiveData : LiveData<List<MainCategoryModel>> = mainCategoryLiveData_
-    private val subCategoryListLiveData_: MutableLiveData<List<SubCategoryListModel>>
-            = MutableLiveData<List<SubCategoryListModel>>()
-    val subCategoryListLiveData : LiveData<List<SubCategoryListModel>> = subCategoryListLiveData_
-    private val subCategoryItemLiveData_ :MutableLiveData<List<SubCategoryItemModel>>
-            = MutableLiveData<List<SubCategoryItemModel>>()
-    val subCategoryItemLiveData : LiveData<List<SubCategoryItemModel>> = subCategoryItemLiveData_
+    private val bannerLiveData_: MutableLiveData<List<BannerModel>> =
+        MutableLiveData<List<BannerModel>>()
+    val bannerLiveData: LiveData<List<BannerModel>> = bannerLiveData_
+    private val subCategoryListLiveData_: MutableLiveData<List<SubCategoryListModel>> =
+        MutableLiveData<List<SubCategoryListModel>>()
+    val subCategoryListLiveData: LiveData<List<SubCategoryListModel>> = subCategoryListLiveData_
 
+
+    private val subCategoryItemLiveData_: MutableLiveData<SubCategoryListModel> =
+        MutableLiveData<SubCategoryListModel>()
+    val subCategoryItemLiveData: LiveData<SubCategoryListModel> = subCategoryItemLiveData_
+
+
+    private val subMenuItemList: MutableList<SubCategoryListModel> = mutableListOf()
+
+    init {
+        getSubCategoryList()
+    }
 
     @SuppressLint("SuspiciousIndentation")
-    fun getMainCategory(){
+    fun getBannerList() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                val result = categoryInteractor.getMainCategory()
-                mainCategoryLiveData_.postValue(result)
+            withContext(Dispatchers.IO) {
+                val result = categoryInteractor.getBannerList()
+                bannerLiveData_.postValue(result)
             }
         }
     }
-    fun getSubCategoryList(){
+
+    fun getSubCategoryList() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                val result = categoryInteractor.getSubCategoryList()
-                subCategoryListLiveData_.postValue(result)
+            withContext(Dispatchers.IO) {
+                subMenuItemList.addAll(categoryInteractor.getSubCategoryList())
+                subCategoryListLiveData_.postValue(subMenuItemList)
+                subMenuItemList.firstOrNull()?.let {
+                    subCategoryItemLiveData_.postValue(it)
+                }
+            }
+        }
+    }
+
+    fun getSubItemList(keyword: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                subMenuItemList.firstOrNull { it.keyword == keyword }
+                    ?.let {
+                        subCategoryItemLiveData_.postValue(it)
+                    }
             }
         }
     }
