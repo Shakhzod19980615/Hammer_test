@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
+                android:layout_marginTop="5dp"
                 android:text="asdad"
                 android:textSize="16dp"
                 android:textColor="@color/menu_item_title">

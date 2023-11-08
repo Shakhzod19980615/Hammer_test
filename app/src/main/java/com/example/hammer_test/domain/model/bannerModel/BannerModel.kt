@@ -6,5 +6,4 @@ class BannerModel(
     val title: String,
     val image: String,
     val ads_image: String,
- //   val itemsOfMainCategory: List<SubMainCategoryResponse>
 )

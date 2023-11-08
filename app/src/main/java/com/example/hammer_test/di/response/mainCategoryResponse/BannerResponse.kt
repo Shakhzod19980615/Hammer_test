@@ -15,6 +15,6 @@ data class BannerResponse(
     val image : String,
     @SerialName ("ads_image")
     val ads_image : String,
-    @SerialName ("children")
-    val itemsOfMainCategory : List<BannerItemsResponse>
+    /*@SerialName ("children")
+    val itemsOfMainCategory : List<BannerItemsResponse>*/
 )

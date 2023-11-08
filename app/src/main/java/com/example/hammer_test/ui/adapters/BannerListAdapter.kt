@@ -13,7 +13,7 @@ class BannerListAdapter(
     private val layoutInflater: LayoutInflater,
 
 ):RecyclerView.Adapter<BannerListAdapter.ViewHolder>() {
-    private  val categoryListItem : MutableList<BannerModel> = mutableListOf()
+    private  val bannerListItem : MutableList<BannerModel> = mutableListOf()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,17 +23,17 @@ class BannerListAdapter(
     }
 
     override fun onBindViewHolder(holder: BannerListAdapter.ViewHolder, position: Int) {
-        holder.bindData(bannerItem=categoryListItem[position])
+        holder.bindData(bannerItem=bannerListItem[position])
     }
 
     override fun getItemCount(): Int {
-        return categoryListItem.size
+        return bannerListItem.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setItems(categoryListItem : List<BannerModel>){
-        this.categoryListItem.clear()
-        this.categoryListItem.addAll(categoryListItem)
+        this.bannerListItem.clear()
+        this.bannerListItem.addAll(categoryListItem)
         notifyDataSetChanged()
     }
 
@@ -42,7 +42,7 @@ class BannerListAdapter(
     ):RecyclerView.ViewHolder(binding.root){
         fun bindData(bannerItem: BannerModel){
 
-            Glide.with(binding.root).load(bannerItem.image).into(binding.categoryImage)
+            Glide.with(binding.root).load(bannerItem.image).into(binding.bannerImage)
         }
 
     }

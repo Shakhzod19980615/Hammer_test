@@ -1,5 +1,7 @@
 package com.example.restaurant_test.di.networkmodule
 
+import android.content.Context
+import com.example.hammer_test.app.DemoApplication
 import com.example.hammer_test.data.ApiService
 import com.example.hammer_test.domain.repository.CategoryRepository
 import com.example.restaurant_test.data.repositoryImpl.CategroyRepositoryImpl
@@ -52,6 +54,7 @@ interface NetworkModule {
                 return okHttpClient.build()
 
             }
+
         @Singleton
         @Provides
         fun provideCategoryRepository(
