@@ -7,13 +7,14 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import com.example.hammer_test.data.ApiService
 import com.example.hammer_test.data.bannerDataSource.BannerItemDao
-import com.example.hammer_test.data.mapper.mapToBannerEntity
-import com.example.hammer_test.data.mapper.mapToBannerModel
+import com.example.hammer_test.data.dataSource.itemProduct.MenuDetailEntity
+import com.example.hammer_test.data.mapper.*
 import com.example.hammer_test.domain.model.bannerModel.BannerModel
 import com.example.hammer_test.domain.repository.CategoryRepository
 import com.example.restaurant_test.data.mapper.mapToMainCategoryModel
 
 import com.example.restaurant_test.data.mapper.mapToSubCategoryListModel
+import uz.demo.dana.data.dataSource.itemProduct.MenuDao
 
 import uz.demo.dana.domain.model.subcategory.SubCategoryListModel
 import java.util.*
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class CategroyRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val bannerItemDao: BannerItemDao,
+    private val menuDao: MenuDao,
     private val context: Context,
 ): CategoryRepository {
 
@@ -46,8 +48,25 @@ class CategroyRepositoryImpl @Inject constructor(
     }
     override suspend fun getSubCategoryList(): List<SubCategoryListModel> {
         return try{
-            val result = apiService.getSubCategoryList()
-            result.map { it.mapToSubCategoryListModel() }
+            if(checkForInternet(context=context)){
+                val result = apiService.getSubCategoryList()
+                menuDao.insertAllItemDetails(itemDetails = result.map { it.mapToMenuListEntity() })
+                for (item in result) {
+                    val menuId = item.id
+                    val menuDetails = item.items.map { it.mapToMenuItemDetailEntity(menuId) }
+                    menuDao.insertAllMenuDetails(menuDetails)
+                }
+              return  result.map { it.mapToSubCategoryListModel() }
+            }else{
+                val result = menuDao.getAllItemDetails()
+                val subCategoryList = mutableListOf<SubCategoryListModel>()
+                for (menuEntity in result) {
+                    val menuDetailList = menuDao.getMenuDetailsByMenuId(menuEntity.menuId)
+                    val subCategory = menuEntity.mapFromMenuEntityToMenuModel(menuDetailList)
+                    subCategoryList.add(subCategory)
+                }
+                return subCategoryList
+            }
 
         }catch (e:Exception) {
             return Collections.emptyList()

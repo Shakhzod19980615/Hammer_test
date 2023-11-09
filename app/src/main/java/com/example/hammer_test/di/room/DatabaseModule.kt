@@ -23,7 +23,7 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideBannerDao(db:AppDatabase) = db.bannerItemDao
-   /* @Singleton
+    @Singleton
     @Provides
-    fun provideMenuDao(db:AppDatabase) = db.menuDao*/
+    fun provideMenuDao(db:AppDatabase) = db.menuDao
 }

@@ -49,7 +49,7 @@ fun SubCategoryListResponse.mapToMenuListEntity():MenuEntity{
         //menuItemDetail = items.map { it.mapToMenuItemDetailEntity() }
     )
 }
-fun SubCategoryItemResponse.mapToMenuItemDetailEntity():MenuDetailEntity{
+fun SubCategoryItemResponse.mapToMenuItemDetailEntity(menuId: Int):MenuDetailEntity{
     return MenuDetailEntity(
         menuDetailId = id,
         menuItemName = name,
@@ -58,17 +58,18 @@ fun SubCategoryItemResponse.mapToMenuItemDetailEntity():MenuDetailEntity{
         menuItemPrice = price,
         menuItemRating = rating,
         menuItemShopName = shopName,
-        menuItemStatus = status
+        menuItemStatus = status,
+        menuId = menuId
     )
 }
-/*fun MenuEntity.mapFromMenuEntityToMenuModel():SubCategoryListModel{
+fun MenuEntity.mapFromMenuEntityToMenuModel(menuItems: List<MenuDetailEntity>):SubCategoryListModel{
     return SubCategoryListModel(
         id = menuId,
         title = menuTitle,
         keyword = menuKeyword,
-       // items = menuItemDetail.map { it.mapFromMenuDetailEntityToMenuItemModel() }
+        items = menuItems.map { it.mapFromMenuDetailEntityToMenuItemModel() }
     )
-}*/
+}
 fun MenuDetailEntity.mapFromMenuDetailEntityToMenuItemModel():SubCategoryItemModel{
    return SubCategoryItemModel(
        id = menuDetailId,

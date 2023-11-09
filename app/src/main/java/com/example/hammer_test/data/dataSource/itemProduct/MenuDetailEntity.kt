@@ -7,11 +7,22 @@ import androidx.room.PrimaryKey
 import uz.demo.dana.data.dataSource.itemProduct.MenuEntity
 
 
-@Entity(tableName = "menu_detail_table")
+@Entity(
+    tableName = "menu_detail_table",
+    foreignKeys = [ForeignKey(
+        entity = MenuEntity::class,
+        parentColumns = ["menuId"],
+        childColumns = ["menuId"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
+
 class MenuDetailEntity (
         @PrimaryKey
         @ColumnInfo(name = "menuDetailId")
         val menuDetailId: Int,
+        @ColumnInfo(name = "menuId") // Add the menuId column here
+        val menuId: Int,
         @ColumnInfo(name = "menuItemName")
         val menuItemName: String,
         @ColumnInfo(name = "menuItemImage")
