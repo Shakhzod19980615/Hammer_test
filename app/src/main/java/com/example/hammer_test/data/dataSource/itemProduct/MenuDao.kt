@@ -11,9 +11,8 @@ interface MenuDao {
     @Query("SELECT * FROM menu_table")
     suspend fun getAllItemDetails():List<MenuEntity>
     @Insert
-    suspend fun insertAllItemDetails(itemDetails: List<MenuEntity>)
-    @Delete
-    suspend fun delete(itemDetail: MenuEntity)
+    suspend fun insertAllMenuList(menuList: List<MenuEntity>)
+
     @Query("SELECT * FROM menu_detail_table WHERE menuId = :menuId")
     suspend fun getMenuDetailsByMenuId(menuId:Int):List<MenuDetailEntity>
     @Insert

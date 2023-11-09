@@ -7,7 +7,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import com.example.hammer_test.data.ApiService
 import com.example.hammer_test.data.bannerDataSource.BannerItemDao
-import com.example.hammer_test.data.dataSource.itemProduct.MenuDetailEntity
 import com.example.hammer_test.data.mapper.*
 import com.example.hammer_test.domain.model.bannerModel.BannerModel
 import com.example.hammer_test.domain.repository.CategoryRepository
@@ -50,7 +49,7 @@ class CategroyRepositoryImpl @Inject constructor(
         return try{
             if(checkForInternet(context=context)){
                 val result = apiService.getSubCategoryList()
-                menuDao.insertAllItemDetails(itemDetails = result.map { it.mapToMenuListEntity() })
+                menuDao.insertAllMenuList(menuList = result.map { it.mapToMenuListEntity() })
                 for (item in result) {
                     val menuId = item.id
                     val menuDetails = item.items.map { it.mapToMenuItemDetailEntity(menuId) }
